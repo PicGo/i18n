@@ -1,0 +1,10 @@
+{
+  "user": {
+    "name": "PicGo",
+    "counter": "China"
+  },
+  "report": {
+    "singular": "only ${cnt} report",
+    "plural": "${cnt} reports"
+  }
+}

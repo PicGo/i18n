@@ -1,0 +1,10 @@
+{
+  "user": {
+    "name": "PicGo",
+    "counter": "China"
+  },
+  "report": {
+    "singular": " ${cnt}个报告",
+    "plural": "${cnt}个报告"
+  }
+}

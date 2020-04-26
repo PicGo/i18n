@@ -1,0 +1,74 @@
+{
+  "name": "@picgo/i18n",
+  "version": "0.0.1",
+  "description": "i18n tool",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsc -w -p .",
+    "build": "rollup -c",
+    "lint": "eslint src/**/*.ts",
+    "codestyle:check": "prettier --check ./src/**/*.ts **/**.json",
+    "codestyle:fix": "prettier --write ./src/**/*.ts **/**.json",
+    "test": "mocha ./test/index.js",
+    "cz": "npm run codestyle:check && git-cz",
+    "release": "bump-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PicGo/i18n.git"
+  },
+  "author": "Spades-S",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PicGo/i18n/issues"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "./node_modules/@picgo/bump-version/.cz-config.js"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "./node_modules/@picgo/bump-version/commitlint-picgo"
+    ]
+  },
+  "homepage": "https://github.com/PicGo/i18n#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@picgo/bump-version": "^1.0.3",
+    "@types/chalk": "^2.2.0",
+    "@types/node": "^13.1.7",
+    "@typescript-eslint/eslint-plugin": "^2.29.0",
+    "@typescript-eslint/parser": "^2.29.0",
+    "commitizen": "^4.0.3",
+    "conventional-changelog": "^3.1.18",
+    "cz-customizable": "^6.2.0",
+    "eslint": "6",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard-with-typescript": "^11.0.1",
+    "eslint-plugin-import": "2",
+    "eslint-plugin-node": "9",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-promise": "4",
+    "eslint-plugin-standard": "4",
+    "husky": "^4.0.10",
+    "mocha": "^7.1.2",
+    "prettier": "^2.0.5",
+    "rollup": "^1.29.0",
+    "rollup-plugin-terser": "^5.2.0",
+    "rollup-plugin-typescript2": "^0.25.3",
+    "typescript": "^3.7.4"
+  },
+  "dependencies": {
+    "chalk": "^4.0.0"
+  }
+}
