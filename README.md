@@ -1,4 +1,5 @@
 ## i18n
+![CI Test](https://github.com/PicGo/i18n/workflows/CI%20Test/badge.svg)
 
 i18n工具
 
