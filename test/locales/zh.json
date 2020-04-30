@@ -1,7 +1,7 @@
 {
   "user": {
     "name": "PicGo",
-    "counter": "China"
+    "country": "China"
   },
   "report": {
     "singular": " ${cnt}个报告",

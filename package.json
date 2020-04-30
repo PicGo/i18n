@@ -7,11 +7,11 @@
   "scripts": {
     "dev": "tsc -w -p .",
     "build": "rollup -c",
-    "lint": "eslint src/**/*.ts",
-    "codestyle:check": "prettier --check ./src/**/*.ts **/**.json",
-    "codestyle:fix": "prettier --write ./src/**/*.ts **/**.json",
+    "lint": "eslint ./src{/,/**/}*.ts",
+    "codestyle:check": "prettier --check ./src{/,/**/}*.ts **/**.json",
+    "codestyle:fix": "prettier --write ./src{/,/**/}*.ts **/**.json",
     "test": "mocha ./test/index.js",
-    "cz": "npm run codestyle:check && git-cz",
+    "cz": "npm run codestyle:check && npm run lint && git-cz",
     "release": "bump-version"
   },
   "repository": {
