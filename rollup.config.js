@@ -1,5 +1,5 @@
-import { terser } from 'rollup-plugin-terser'
-import typescript from 'rollup-plugin-typescript2'
+import { terser } from 'rollup-plugin-terser';
+import typescript from 'rollup-plugin-typescript2';
 export default {
   input: './src/index.ts',
   plugins: [
@@ -14,7 +14,7 @@ export default {
   ],
   output: [{
     format: 'cjs',
-    file: 'dist/index.js',
+    file: 'dist/i18n_cjs.js',
     sourcemap: false
   }]
-}
+};

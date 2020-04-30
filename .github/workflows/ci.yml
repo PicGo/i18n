@@ -1,0 +1,17 @@
+name: CI Test
+on:
+  push:
+    branches:
+      - dev
+      - master
+jobs:
+  build-and-prerelease:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: npm install, make tests
+        run: |
+          npm install
+          npm run build
+          npm run test
