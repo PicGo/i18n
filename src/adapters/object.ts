@@ -11,4 +11,9 @@ export class ObjectAdapter extends BaseAdapter {
   getLocale(language: string): ILocale {
     return this.locales[language];
   }
+
+  // change the locales
+  setLocales(locales: ILocaleMap) {
+    this.locales = locales;
+  }
 }
