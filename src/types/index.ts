@@ -24,3 +24,7 @@ export interface IFileSyncAdapterConstructorOptions {
 export enum EFileChangeType {
   change = 'change',
 }
+
+export enum ERUN_ENV {
+  dev = 'development',
+}

@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { BaseAdapter } from './base';
 import { logger } from '../utils';
-import { EFileChangeType, IFileSyncAdapterConstructorOptions, ILocaleMap, ILocaleFileName } from '../types';
+import { EFileChangeType, ERUN_ENV, IFileSyncAdapterConstructorOptions, ILocaleMap, ILocaleFileName } from '../types';
 
 export class FileSyncAdapter extends BaseAdapter {
   private locales: ILocaleMap = {};
@@ -19,7 +19,7 @@ export class FileSyncAdapter extends BaseAdapter {
     }
 
     // only for dev env
-    if (process.env.NODE_ENV === 'dev') {
+    if (process.env.NODE_ENV === ERUN_ENV.dev) {
       this.watch(this.localesBaseDir);
     }
   }
