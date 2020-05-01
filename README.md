@@ -1,7 +1,8 @@
 ## i18n
+
 ![CI Test](https://github.com/PicGo/i18n/workflows/CI%20Test/badge.svg)
 
-i18n工具
+i18n 工具
 
 ### 用法
 
@@ -25,7 +26,7 @@ const objectAdapter = new ObjectAdapter({
   zh: {
     user: {
       name: 'PicGo',
-      country: 'China',
+      country: '中国',
     },
     report: {
       singular: ' ${cnt}个报告',
@@ -60,6 +61,8 @@ class CustomAdapter extends BaseAdapter {
 
 ### API
 
+#### I18n
+
 - 构造函数 I18n
 
   - 参数: options
@@ -70,6 +73,37 @@ class CustomAdapter extends BaseAdapter {
     }
     ```
   - 返回值: I18n 实例
+
+* i18n.setLanguage
+
+  - 参数: language, 语言类型
+  - 无返回值
+
+* i18n.getLauguage
+
+  - 无参数
+  - 返回当前语言类型
+
+* i18n.translate
+
+  - 参数 phrase, args
+  - 返回翻译后文本
+
+  ```json
+  // en.json
+  {
+    "report": {
+      "singular": "only ${cnt} report",
+      "plural": "${cnt} reports"
+    }
+  }
+  ```
+
+  ```js
+  i18n.translate('report.singular', { cnt: 1 }); // only 1 report
+  ```
+
+#### FileSyncAdapter
 
 - 构造函数 FileSyncAdapter
 
@@ -82,7 +116,13 @@ class CustomAdapter extends BaseAdapter {
     ```
   - 返回 FileSyncAdapter 实例
 
-- ObjectAdapter
+- fileSyncAdapter.getLocale
+  - 参数 languag, 语言类型
+  - 返回 language 对应的 locale 数据
+
+#### ObjectAdapter
+
+- 构造函数 ObjectAdapter
 
   - 参数 locales, 保存 locales 信息的对象
 
@@ -113,32 +153,20 @@ class CustomAdapter extends BaseAdapter {
 
   - 返回 ObjectAdapter 实例
 
-- i18n.setLanguage
+- objectAdapter.getLocale
+  - 参数 languag, 语言类型
+  - 返回 language 对应的 locale 数据
 
-  - 参数: language
+* objectAdapter.setLocales 用于动态修改 objectAdapter 上的 locales 数据
+  - 参数 locales, locales 数据
   - 无返回值
 
-- i18n.getLauguage
-
-  - 返回当前语言类型
-
-- i18n.translate
-
-  - 参数 phrase, args
-  - 返回翻译后文本
-
-  ```json
-  // en.json
-  {
-    "report": {
-      "singular": "only ${cnt} report",
-      "plural": "${cnt} reports"
-    }
-  }
-  ```
-
   ```js
-  i18n.translate('report.singular', { cnt: 1 }); // only 1 report
+  objectAdapter.setLocales({
+    zh: {
+      newData: 'this is new Data',
+    },
+  });
   ```
 
 ### License
