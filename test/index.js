@@ -10,7 +10,7 @@ const objectAdapter = new ObjectAdapter({
   zh: {
     user: {
       name: 'PicGo',
-      country: 'China',
+      country: '中国',
     },
     report: {
       singular: ' ${cnt}个报告',
@@ -39,7 +39,7 @@ describe('i18n', () => {
     it('translate', () => {
       assert.equal(i18n.translate('report.plural', { cnt: 2 }), '2个报告');
     });
-    it('setLanguate', () => {
+    it('setLanguage', () => {
       i18n.setLanguage('en');
       assert.equal(i18n.translate('report.plural', { cnt: 2 }), '2 reports');
     });
@@ -53,9 +53,27 @@ describe('i18n', () => {
     it('translate', () => {
       assert.equal(i18n.translate('report.plural', { cnt: 2 }), '2个报告');
     });
-    it('setLanguate', () => {
+    it('setLanguage', () => {
       i18n.setLanguage('en');
       assert.equal(i18n.translate('report.plural', { cnt: 2 }), '2 reports');
     });
+
+    it('setLocales', () => {
+      objectAdapter.setLocales({
+        en: {
+          user: {
+            name: 'PicGo',
+            country: 'China',
+          },
+          post: {
+            singular: 'only ${cnt} post',
+            plural: '${cnt} posts',
+          },
+        },
+      });
+      assert.equal(i18n.translate('post.plural', { cnt: 2 }), '2 posts');
+
+    });
+
   });
 });
