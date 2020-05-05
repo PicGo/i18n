@@ -66,7 +66,7 @@ i18n 默认提供 FileSyncAdapter、ObjectAdapter 两个适配器，适用的场
 - 引入
 
   ```html
-  <script src="https://cdn.jsdelivr.net/npm/@picgo/i18n@0.0.3/dist/i18n_umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@picgo/i18n/dist/i18n_umd.js"></script>
   ```
 
 - 使用

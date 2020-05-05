@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { EPlatform } from 'src/types';
+import { EPlatform } from '../types';
 class Logger {
   private isNode: boolean;
   constructor() {
