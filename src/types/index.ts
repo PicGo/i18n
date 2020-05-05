@@ -28,3 +28,8 @@ export enum EFileChangeType {
 export enum ERUN_ENV {
   dev = 'development',
 }
+
+export enum EPlatform {
+  node = 'node',
+  web = 'web',
+}

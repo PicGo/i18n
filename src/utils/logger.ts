@@ -1,13 +1,32 @@
 import chalk from 'chalk';
+import { EPlatform } from 'src/types';
 class Logger {
+  private isNode: boolean;
+  constructor() {
+    this.isNode = this.getPlatform() === EPlatform.node;
+  }
   error(info: string) {
-    console.error(chalk.red(`[i18n] ${info}`));
+    const output = this.formatOutput(info);
+    console.error(this.isNode ? chalk.red(output) : output);
   }
   log(info: string) {
-    console.log(chalk.gray(`[i18n] ${info}`));
+    const output = this.formatOutput(info);
+    console.log(this.isNode ? chalk.gray(output) : output);
   }
   warn(info: string) {
-    console.warn(chalk.yellow(`[i18n] ${info}`));
+    const output = this.formatOutput(info);
+    console.warn(this.isNode ? chalk.yellow(output) : output);
+  }
+
+  private getPlatform(): EPlatform {
+    if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
+      return EPlatform.node;
+    }
+    return EPlatform.web;
+  }
+
+  private formatOutput(output: string) {
+    return `[i18n] ${output}`;
   }
 }
 

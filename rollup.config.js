@@ -6,15 +6,18 @@ export default {
     typescript({
       tsconfigOverride: {
         compilerOptions: {
-          module: 'ESNext'
-        }
-      }
+          module: 'ESNext',
+        },
+      },
     }),
-    terser()
+    terser(),
   ],
-  output: [{
-    format: 'cjs',
-    file: 'dist/i18n_cjs.js',
-    sourcemap: false
-  }]
+  output: [
+    {
+      name: 'PicGo_I18n',
+      format: 'umd',
+      file: 'dist/i18n_umd.js',
+      sourcemap: false,
+    },
+  ],
 };
