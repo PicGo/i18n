@@ -6,49 +6,100 @@ i18n 工具
 
 ### 用法
 
-i18n 默认提供 FileSyncAdapter、ObjectAdapter 两个适配器，适用的场景分别为: locales 信息保存在文件中和 locales 信息保存在对象中。
+i18n 默认提供 FileSyncAdapter、ObjectAdapter 两个适配器，适用的场景分别为:
 
-```js
-import { I18n, FileSyncAdapter, ObjectAdapter } from '@picgo/i18n';
+- FileSyncAdapter: locales 信息保存在文件中, 该适配器**只适用于 Nodejs 平台**
+- ObjectAdapter: locales 信息保存在对象中, 该适配器适用于 Web 平台、Nodejs 平台
 
-// use FileSyncAdapter
-const fileSyncAdapter = new FileSyncAdapter({
-  localesBaseDir: path.resolve(__dirname, './locales'), // locales文件目录
-});
+#### Nodejs
 
-const i18n = new I18n({
-  adapter: fileSyncAdapter,
-  defaultLanguage: 'zh',
-});
+- 安装
 
-// use ObjectAdapter
-const objectAdapter = new ObjectAdapter({
-  zh: {
-    user: {
-      name: 'PicGo',
-      country: '中国',
+  npm install @picgo/i18n -S
+
+- 使用
+
+  ```js
+  import { I18n, FileSyncAdapter, ObjectAdapter } from '@picgo/i18n';
+
+  // use FileSyncAdapter
+  const fileSyncAdapter = new FileSyncAdapter({
+    localesBaseDir: path.resolve(__dirname, './locales'), // locales文件目录
+  });
+
+  const i18n = new I18n({
+    adapter: fileSyncAdapter,
+    defaultLanguage: 'zh',
+  });
+
+  // use ObjectAdapter
+  const objectAdapter = new ObjectAdapter({
+    zh: {
+      user: {
+        name: 'PicGo',
+        country: '中国',
+      },
+      report: {
+        singular: ' ${cnt}个报告',
+        plural: '${cnt}个报告',
+      },
     },
-    report: {
-      singular: ' ${cnt}个报告',
-      plural: '${cnt}个报告',
+    en: {
+      user: {
+        name: 'PicGo',
+        country: 'China',
+      },
+      report: {
+        singular: 'only ${cnt} report',
+        plural: '${cnt} reports',
+      },
     },
-  },
-  en: {
-    user: {
-      name: 'PicGo',
-      country: 'China',
+  });
+  const i18n = new I18n({
+    adapter: objectAdapter,
+    defaultLanguage: 'zh',
+  });
+  ```
+
+#### Web
+
+- 引入
+
+  ```html
+  <script src="https://cdn.jsdelivr.net/npm/@picgo/i18n@0.0.3/dist/i18n_umd.js"></script>
+  ```
+
+- 使用
+  ```js
+  const { ObjectAdapter, I18n } = PicGo_I18n;
+  // use ObjectAdapter
+  const objectAdapter = new ObjectAdapter({
+    zh: {
+      user: {
+        name: 'PicGo',
+        country: '中国',
+      },
+      report: {
+        singular: ' ${cnt}个报告',
+        plural: '${cnt}个报告',
+      },
     },
-    report: {
-      singular: 'only ${cnt} report',
-      plural: '${cnt} reports',
+    en: {
+      user: {
+        name: 'PicGo',
+        country: 'China',
+      },
+      report: {
+        singular: 'only ${cnt} report',
+        plural: '${cnt} reports',
+      },
     },
-  },
-});
-const i18n = new I18n({
-  adapter: objectAdapter,
-  defaultLanguage: 'zh',
-});
-```
+  });
+  const i18n = new I18n({
+    adapter: objectAdapter,
+    defaultLanguage: 'zh',
+  });
+  ```
 
 ### 自定义 Adapter
 
@@ -158,6 +209,7 @@ class CustomAdapter extends BaseAdapter {
   - 返回 language 对应的 locale 数据
 
 * objectAdapter.setLocales 用于动态修改 objectAdapter 上的 locales 数据
+
   - 参数 locales, locales 数据
   - 无返回值
 
