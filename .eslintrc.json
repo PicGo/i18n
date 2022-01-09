@@ -3,13 +3,16 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 6,
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
   "plugins": ["@typescript-eslint"],
-  "extends": ["prettier/@typescript-eslint"],
+  "extends": ["standard-with-typescript"],
   "rules": {
-    "@typescript-eslint/class-name-casing": "error",
     "@typescript-eslint/semi": "error",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/restrict-template-expressions": "off",
+    "no-prototype-builtins": "off",
     "no-throw-literal": "error",
     "no-unused-expressions": "error",
     "no-redeclare": "error",

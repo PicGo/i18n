@@ -1,24 +1,24 @@
-import { BaseAdapter } from '../adapters';
+import { BaseAdapter } from '../adapters'
 export interface ILocaleFileName {
-  [locale: string]: string;
+  [locale: string]: string
 }
 
 export interface ILocale {
-  [key: string]: any;
+  [key: string]: any
 }
 
 export interface ILocaleMap {
-  [language: string]: ILocale;
+  [language: string]: ILocale
 }
 
 export interface II18nConstructorOptions {
-  adapter: BaseAdapter;
-  defaultLanguage: string;
+  adapter: BaseAdapter
+  defaultLanguage: string
 }
 
 export interface IFileSyncAdapterConstructorOptions {
-  localesBaseDir: string;
-  localeFileName?: ILocaleFileName;
+  localesBaseDir: string
+  localeFileName?: ILocaleFileName
 }
 
 export enum EFileChangeType {

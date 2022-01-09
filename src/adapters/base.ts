@@ -1,5 +1,5 @@
-import { ILocale } from '../types';
+import { ILocale } from '../types'
 
 export abstract class BaseAdapter {
-  abstract getLocale(language: string): ILocale;
+  abstract getLocale (language: string): ILocale
 }
