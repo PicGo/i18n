@@ -74,6 +74,20 @@ describe('i18n', () => {
       assert.equal(i18n.translate('post.plural', { cnt: 2 }), '2 posts');
 
     });
-
+    it('getLocale null & translate to undefined', () => {
+      i18n.setLanguage('TEST')
+      assert.equal(i18n.translate('test'), undefined)
+    })
+    it('getLocale null but change to default', () => {
+      i18n.setDefaultLanguage('en')
+      assert.equal(i18n.translate('user.name'), 'PicGo')
+    })
+    it('language can has upper-case string', () => {
+      objectAdapter.setLocale('zh-CN', {
+        test: '测试PicGo'
+      })
+      i18n.setLanguage('zh-CN')
+      assert.equal(i18n.translate('test'), '测试PicGo')
+    })
   });
 });

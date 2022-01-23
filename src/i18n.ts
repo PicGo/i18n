@@ -1,5 +1,5 @@
 import { BaseAdapter } from './adapters'
-import { II18nConstructorOptions } from './types'
+import { II18nConstructorOptions, ILocale } from './types'
 import { logger } from './utils'
 
 const DOTNOTATION = '.'
@@ -7,10 +7,16 @@ const DOTNOTATION = '.'
 export class I18n {
   private readonly adapter: BaseAdapter
   private currentLanguage: string
+  private defaultLanguage: string
   constructor (options: II18nConstructorOptions) {
     const { adapter, defaultLanguage } = options
     this.adapter = adapter
-    this.currentLanguage = defaultLanguage.trim().toLowerCase()
+    this.currentLanguage = defaultLanguage.trim()
+    this.defaultLanguage = this.currentLanguage
+  }
+
+  getAdapter (): BaseAdapter {
+    return this.adapter
   }
 
   getLanguage (): string {
@@ -18,13 +24,29 @@ export class I18n {
   }
 
   setLanguage (language: string): void {
-    this.currentLanguage = language.trim().toLowerCase()
+    this.currentLanguage = language.trim()
   }
 
-  translate (phrase: string, args: any): string | undefined {
-    const currentLocale = this.adapter.getLocale(this.currentLanguage)
+  setDefaultLanguage (language: string): void {
+    this.defaultLanguage = language.trim()
+  }
+
+  private getLocale (): ILocale | null {
+    let currentLocale = this.adapter.getLocale(this.currentLanguage)
     if (!currentLocale) {
-      logger.error('current locale is null')
+      currentLocale = this.adapter.getLocale(this.defaultLanguage)
+      if (!currentLocale) {
+        logger.error(`current locale ${this.currentLanguage} is null`)
+        return null
+      }
+      logger.error(`current locale ${this.currentLanguage} is null, change to default locale ${this.defaultLanguage}`)
+    }
+    return currentLocale
+  }
+
+  translate (phrase: string, args?: any): string | undefined {
+    const currentLocale = this.getLocale()
+    if (!currentLocale) {
       return
     }
 
@@ -39,9 +61,12 @@ export class I18n {
     return this.postProcess(template, args)
   }
 
-  private postProcess (template: string, args: any): string | undefined {
+  private postProcess (template: string, args?: any): string | undefined {
     if (!template) {
       return
+    }
+    if (!args) {
+      return template
     }
     // see benchmark
     return Object.keys(args).reduce((res, key) => {
