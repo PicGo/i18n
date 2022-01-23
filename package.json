@@ -1,6 +1,6 @@
 {
   "name": "@picgo/i18n",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "i18n tool",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
